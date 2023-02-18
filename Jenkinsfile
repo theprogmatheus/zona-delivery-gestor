@@ -6,7 +6,7 @@ node {
          stage('Clone Git Repository') {
             git url: 'https://github.com/theprogmatheus/zona-delivery-gestor.git',
                 credentialsId: 'Git',
-                branch: 'production'
+                branch: 'master'
          }
          
           stage('Build Docker Image') {
