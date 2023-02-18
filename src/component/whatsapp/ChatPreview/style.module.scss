@@ -1,0 +1,110 @@
+.chat {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    user-select: none;
+    background: rgb(230, 230, 230);
+    color: #202020;
+    height: 12.5vh;
+    cursor: pointer;
+    padding: 10px;
+    transition: .3s;
+    position: relative;
+    min-height: 100px;
+
+    .profilePic {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 80px;
+        height: 100%;
+        box-sizing: border-box;
+        overflow: hidden;
+
+        img {
+            user-select: none;
+            width: 100%;
+            border-radius: 50%;
+
+        }
+    }
+
+    .profileDesc {
+        height: 100%;
+        width: calc(80% - 80px);
+        box-sizing: border-box;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 10px;
+        justify-content: space-around;
+
+        h3 {
+            font-size: 1.1rem;
+        }
+        p{
+            font-size: .9rem;
+        }
+    }
+
+    .sessionStatus {
+        width: 20%;
+        height: 100%;
+        box-sizing: border-box;
+        display: flex;
+
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+
+
+        .statusInfo {
+            margin-top: 10px;
+            width: 64px;
+            height: 64px;
+            background: #404040;
+            color: #FFF;
+            border-radius: 50%;
+            font-size: 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: .4s;
+
+            svg {
+                font-size: 2rem;
+            }
+
+            &.paused {
+                background: rgb(0, 167, 36);
+            }
+
+            &.needHelp {
+                background: rgb(214, 104, 0);
+            }
+        }
+
+
+
+
+
+    }
+
+
+    P {
+        font-size: 1rem;
+    }
+
+    small {
+        font-size: .8rem;
+        color: #808080;
+        align-self: flex-end;
+        justify-content: flex-end;
+    }
+
+    &.active {
+        border-left: 5px solid rgb(0, 0, 255);
+        background: #FFF;
+    }
+}

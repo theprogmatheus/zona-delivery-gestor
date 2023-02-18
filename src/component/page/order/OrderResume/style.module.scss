@@ -1,0 +1,140 @@
+.container {
+    padding: 20px;
+    cursor: pointer;
+    user-select: none;
+
+    background: rgb(230, 230, 230);
+    color: #202020;
+    transition: .3s;
+    position: relative;
+
+    .title {
+        font-size: 1rem;
+        margin-bottom: 10px;
+        font-weight: 600;
+        color: #606060;
+    }
+
+    .customer {
+        margin-bottom: 10px;
+        font-weight: bold;
+    }
+
+    .fastActions {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+
+        button {
+            padding: 10px;
+            border: none;
+            outline: none;
+            border-radius: 8px;
+            width: 100%;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+
+        .dispatchActionButton {
+            margin: 15px 0 0 0;
+            background: #00791a;
+            color: #FFF;
+            font-weight: bold;
+            text-transform: uppercase;
+
+            &:hover {
+                background: #005f15;
+            }
+        }
+    }
+
+    .status {
+        font-weight: bold;
+        font-size: 1.1rem;
+        background: #FFF;
+        color: #606060;
+        padding: 10px;
+        border-radius: 16px;
+        margin: 10px 0 10px 0;
+        width: max-content;
+
+
+        &.placed {
+            background: rgb(255, 0, 0);
+            color: #FFF;
+            animation: placed-animation 3.5s infinite;
+        }
+
+        &.confirmed {
+            background: rgb(255, 136, 25);
+            color: #FFF;
+        }
+
+
+        &.dispatched {
+            background: rgb(130, 145, 0);
+            color: #FFF;
+        }
+
+        &.concluded {
+            background: rgb(64, 190, 0);
+            color: #FFF;
+        }
+
+        &.cancelled {
+            background: #ff1919;
+            color: #FFF;
+        }
+
+    }
+
+    .tags {
+        margin: 0;
+        list-style: none;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: flex-start;
+        flex-wrap: wrap;
+
+        li {
+            background: #FFF;
+            border: 1px solid #606060;
+            color: #808080;
+            width: auto;
+            border-radius: 16px;
+            padding: 8px;
+            margin: 2px;
+
+
+
+            &.scheduled {
+                background: rgb(168, 90, 0);
+                border: none;
+                color: #FFF;
+            }
+        }
+    }
+}
+
+.active {
+    background: #FFF;
+    border-left: 5px solid rgb(255, 0, 0);
+}
+
+
+
+@keyframes placed-animation {
+    from {
+        background: rgb(0, 200, 185);
+    }
+
+    50% {
+        background: rgb(0, 130, 120);
+    }
+
+    to {
+        background: rgb(0, 200, 185);
+    }
+}

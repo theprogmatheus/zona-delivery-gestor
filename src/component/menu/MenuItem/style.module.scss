@@ -1,0 +1,106 @@
+.container {
+    border: 1px solid #808080;
+    background: #FFF;
+    color: #404040;
+    padding: 20px;
+    border-radius: 8px;
+    margin: 5px 0 5px 0;
+    width: 100%;
+    box-sizing: border-box;
+
+    .preview {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: flex-start;
+
+        .dragButton {
+            padding: 5px;
+            background: none;
+            color: #404040;
+
+            svg {
+                font-size: 2rem;
+            }
+
+            &:hover {
+                background: none;
+                color: #202020;
+                cursor: n-resize;
+
+            }
+        }
+
+        .picture {
+            background: rgb(220, 220, 220);
+            width: 80px;
+            height: 80px;
+            border-radius: 8px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+
+            img {
+                border: 2px solid red;
+                box-sizing: border-box;
+                user-select: none;
+                width: 100%;
+                height: 100%;
+            }
+        }
+
+        .description {
+            width: 60%;
+            height: 100%;
+            padding: 15px;
+        }
+
+        .price {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: center;
+            width: 25%;
+
+            p {
+                margin-right: 15px;
+                color: green;
+                font-size: 1.5rem;
+            }
+
+            .oldPrice {
+                text-decoration: line-through;
+                color: #202020;
+                font-size: 1.25rem;
+            }
+        }
+
+        .buttons {
+
+            width: 15%;
+
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: flex-end;
+
+            button {
+                margin-left: 5px;
+                padding: 10px;
+
+                svg {
+                    font-size: 1rem;
+                }
+            }
+        }
+
+    }
+
+
+    .aditionals {
+        width: 90%;
+        margin: auto;
+        margin-top: 30px;
+    }
+}

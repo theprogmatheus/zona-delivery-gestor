@@ -1,0 +1,118 @@
+.container {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+
+    .amountSpan{
+        background: rgb(200, 0, 0);
+        color: #FFF;
+        padding: 8px;
+        border-radius: 100%;
+        font-size: .8rem;
+        margin-left: 5px;
+    }
+
+    .sidebar {
+
+        width: 25%;
+        min-width: 300px;
+        height: 100%;
+
+
+        .panel {
+            height: 150px;
+            font-size: 1rem;
+
+            .scheduleAndNow {
+                width: 100%;
+                display: flex;
+                flex-direction: row;
+                align-items: center;
+                justify-content: center;
+                height: 50%;
+
+                button {
+                    width: 50%;
+                    padding: 20px;
+                    border: none;
+                    outline: none;
+                    background: none;
+                    cursor: pointer;
+                    font-weight: bold;
+                    color: rgb(155, 0, 0);  
+                    border-bottom: 3px solid transparent;
+
+                    &.active {
+                        border-bottom: 3px solid rgb(155, 0, 0);
+                    }
+                }
+                
+            }
+
+            .searchAndFilters {
+                height: 50%;
+
+                width: 100%;
+                display: flex;
+                flex-direction: row;
+                align-items: center;
+                justify-content: center;
+
+                input,
+                select {
+                    width: 50%;
+                    padding: 20px;
+                    outline: none;
+                    border: none;
+                }
+
+                input {
+                    border-right: 1px solid #808080bb;
+                }
+            }
+        }
+
+        .orders {
+
+            width: 100%;
+            height: calc(100% - 150px);
+            overflow: auto;
+
+            & .orderGroup {
+                display: flex;
+                flex-direction: row;
+                align-items: center;
+                justify-content: space-between;
+                background: rgb(155, 0, 0);
+                padding: 15px;
+                color: #FFF;
+                font-weight: bold;
+                user-select: none;
+            }
+
+            .noOrders{
+                height: calc(100% - 150px);
+                width: 100%;
+
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+            }
+        }
+    }
+
+    .order {
+        width: 80%;
+        height: 100vh;
+        overflow: auto;
+
+        background: rgb(220, 220, 220);
+
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+}

@@ -1,0 +1,27 @@
+
+const useSettings = () => {
+
+    const loadSettings = async () => {
+        const result = await window.ipcRenderer.invoke('settings.v2.settings');
+        if (result)
+            return JSON.parse(result)
+    }
+
+    const loadSettingsValues = async () => {
+        const result = await window.ipcRenderer.invoke('settings.v2.loadValues');
+        if (result)
+            return JSON.parse(result)
+    }
+
+    const saveSettingsValues = async (newValues) => {
+        if (newValues)
+            await window.ipcRenderer.invoke('settings.v2.saveValues', JSON.stringify(newValues));
+    }
+
+    const applyPlaceholders = async (string, placeholders) => {
+        if (string && placeholders)
+            return await window.ipcRenderer.invoke('settings.v2.applyPlaceholders', string, JSON.stringify(placeholders));
+    }
+    return { loadSettings, loadSettingsValues, saveSettingsValues, applyPlaceholders }
+}
+export default useSettings;

@@ -1,0 +1,58 @@
+.container {
+    margin: 15px 0px 15px 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.inputGroup {
+    position: relative;
+    margin-bottom: 15px;
+    width: 100%;
+
+    .input {
+        margin: 0;
+        width: 100%;
+        border-bottom: 1px solid #202020;
+        padding-right: 70px;
+        font-size: 1rem;
+    }
+
+    .removeButton {
+        position: absolute;
+        width: 22px;
+        height: 22px;
+        border-radius: 50%;
+        right: 15px;
+        top: 22px;
+        cursor: pointer;
+        border: none;
+        outline: none;
+        text-transform: uppercase;
+        background: rgb(110, 0, 0);
+        color: #FFF;
+        transition: background .3s;
+
+        &:hover {
+            background: rgb(150, 0, 0);
+        }
+    }
+}
+
+.addButton {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    cursor: pointer;
+    border: none;
+    outline: none;
+    background: rgb(0, 110, 0);
+    color: #FFF;
+    font-size: 1.3rem;
+    transition: .3s;
+
+    &:hover {
+        background: rgb(0, 150, 0);
+    }
+}

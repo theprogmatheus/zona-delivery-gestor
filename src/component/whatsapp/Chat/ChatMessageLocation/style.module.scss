@@ -1,0 +1,13 @@
+.container{
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    img{
+        border-radius: 8px;
+    }
+    p{
+        margin-top: 20px;
+    }
+}

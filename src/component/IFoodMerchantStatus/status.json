@@ -1,0 +1,43 @@
+[
+    {
+        "operation": "delivery",
+        "salesChannel": "ifood-app",
+        "available": true,
+        "state": "OK",
+        "reopenable": {
+            "identifier": null,
+            "type": null,
+            "reopenable": false
+        },
+        "validations": [
+            {
+                "id": "is-connected",
+                "code": "is.connected.config",
+                "state": "OK",
+                "message": {
+                    "title": "Loja conectada à rede do iFood",
+                    "subtitle": "",
+                    "description": "",
+                    "priority": 26
+                }
+            },
+            {
+                "id": "opening-hours",
+                "code": "during.opening-hours.config",
+                "state": "OK",
+                "message": {
+                    "title": "Dentro do horário de funcionamento",
+                    "subtitle": "quinta-feira, das 00:00 às 23:59",
+                    "description": "",
+                    "priority": 27
+                }
+            }
+        ],
+        "message": {
+            "title": "Loja aberta",
+            "subtitle": "Loja aberta das 18:00 as 23:30",
+            "description": "",
+            "priority": 99
+        }
+    }
+]

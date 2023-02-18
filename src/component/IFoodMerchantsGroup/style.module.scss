@@ -1,0 +1,23 @@
+.container {
+    background: #303030;
+    color: #FFF;
+    border: 1px solid #FFF;
+    padding: 20px;
+    border-radius: 8px;
+    user-select: none;
+    cursor: pointer;
+    width: 200px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.list {
+    list-style: none;
+    width: 350px;
+
+    li {
+        width: 100%;
+        margin: 5px;
+    }
+}

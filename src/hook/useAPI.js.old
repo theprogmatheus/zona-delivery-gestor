@@ -1,0 +1,47 @@
+const useAPI = () => {
+
+    const invokeAPI = async (methodName, ...args) =>
+        await window.ipcRenderer.invoke(`API.${methodName}`, args && JSON.stringify(args));
+
+    const api = {
+        login: async (credentials) => await invokeAPI('login', credentials),
+        authenticate: async (email, password, keepAuth) => await invokeAPI('authenticate', email, password, keepAuth),
+        logout: async () => await invokeAPI('logout'),
+        isAuthenticated: async () => await invokeAPI('isAuthenticated'),
+        listOrders: async (restaurantId) => await invokeAPI('listOrders', restaurantId),
+        getOrderDetails: async (restaurantId, orderId) => await invokeAPI('getOrderDetails', restaurantId, orderId),
+        confirmOrder: async (restaurantId, orderId) => await invokeAPI('confirmOrder', restaurantId, orderId),
+        dispatchOrder: async (restaurantId, orderId) => await invokeAPI('dispatchOrder', restaurantId, orderId),
+        ifoodCancellationReasons: async (restaurantId, orderId) => await invokeAPI('ifoodCancellationReasons', restaurantId, orderId),
+        ifoodRequestCancellation: async (restaurantId, orderId, reason, cancellationCode) => await invokeAPI('ifoodRequestCancellation', restaurantId, orderId, reason, cancellationCode),
+        ifoodAcceptCancellation: async (restaurantId, orderId) => await invokeAPI('ifoodAcceptCancellation', restaurantId, orderId),
+        ifoodDenyCancellation: async (restaurantId, orderId) => await invokeAPI('ifoodDenyCancellation', restaurantId, orderId),
+        eventPolling: async (restaurantId) => await invokeAPI('eventPolling', restaurantId),
+        eventAcknowledgment: async (restaurantId, events) => await invokeAPI('eventAcknowledgment', restaurantId, events),
+        findCustomer: async (restaurantId, customerId, findBy) => await invokeAPI('findCustomer', restaurantId, customerId, findBy),
+        registerCustomer: async (restaurantId, body) => await invokeAPI('registerCustomer', restaurantId, body),
+        customerAddresses: async (restaurantId, customerId) => await invokeAPI('customerAddresses', restaurantId, customerId),
+        registerCustomerAddress: async (restaurantId, customerId, address) => await invokeAPI('registerCustomerAddress', restaurantId, customerId, address),
+        createOrder: async (restaurantId, order) => await invokeAPI('createOrder', restaurantId, order),
+        listRestaurants: async () => await invokeAPI('listRestaurants'),
+        registerMenu: async (restaurantId, name) => await invokeAPI('registerMenu', restaurantId, name),
+        deleteMenu: async (restaurantId, menuId) => await invokeAPI('deleteMenu', restaurantId, menuId),
+        registerMenuCategory: async (restaurantId, menuId, name) => await invokeAPI('registerMenuCategory', restaurantId, menuId, name),
+        deleteMenuCategory: async (restaurantId, menuId, categoryId) => await invokeAPI('deleteMenuCategory', restaurantId, menuId, categoryId),
+        registerMenuItem: async (restaurantId, menuId, name, description, price, image) => await invokeAPI('registerMenuItem', restaurantId, menuId, name, description, price, image),
+        deleteMenuItem: async (restaurantId, menuId, itemId) => await invokeAPI('deleteMenuItem', restaurantId, menuId, itemId),
+        egisterMenuAditional: async (restaurantId, menuId, name, description, price, minAmount, maxAmount) => await invokeAPI('registerMenuAditional', restaurantId, menuId, name, description, price, minAmount, maxAmount),
+        addMenuItemToCategory: async (restaurantId, menuId, itemId, categoryId) => await invokeAPI('addMenuItemToCategory', restaurantId, menuId, itemId, categoryId),
+        listMenuCategories: async (restaurantId, menuId) => await invokeAPI('listMenuCategories', restaurantId, menuId),
+        listMenus: async (restaurantId) => await invokeAPI('listMenus', restaurantId),
+        findMenu: async (restaurantId, menuId) => await invokeAPI('findMenu', restaurantId, menuId),
+        geoData: async (latitude, longitude) => await invokeAPI('geoData', latitude, longitude),
+        listIFoodMerchants: async (restaurantId) => await invokeAPI('listIFoodMerchants', restaurantId),
+        getIFoodMerchantStatus: async (restaurantId, merchantId) => await invokeAPI('getIFoodMerchantStatus', restaurantId, merchantId)
+    }
+
+
+    return { api, invokeAPI }
+}
+
+export default useAPI;

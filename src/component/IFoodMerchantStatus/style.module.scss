@@ -1,0 +1,62 @@
+.container {
+    background: #FFF;
+    border: 1px solid #808080;
+    padding: 15px;
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    user-select: none;
+
+    svg{
+        font-size: 1.3rem;
+    }
+    
+    .title {
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 10px;
+        color: #202020;
+        font-size: 1rem;
+        font-weight: bold;
+        box-sizing: border-box;
+        text-transform: uppercase;
+        text-align: right;
+        margin-left: 20px;
+
+        &.ok {
+            color: rgb(0, 150, 0);
+        }
+
+        &.warning {
+            color: rgb(255, 170, 73)
+        }
+
+        &.closed {
+            color: #606060;
+        }
+
+        &.error {
+            color: rgb(255, 89, 89)
+        }
+
+        .subtitle {
+            font-weight: normal;
+            width: 100%;
+            font-size: .9rem;
+        }
+    }
+
+
+    .description {
+        color: #404040;
+        font-size: .85rem;
+        width: 100%;
+        text-align: right;
+        padding: 10px;
+    }
+}

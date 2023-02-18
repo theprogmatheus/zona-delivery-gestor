@@ -1,0 +1,219 @@
+.container {
+    width: calc(100% - 75px);
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+
+    background: rgb(220, 220, 220);
+    position: relative;
+    overflow: hidden;
+
+    * {
+        box-sizing: border-box;
+    }
+
+    .controlPanel {
+        background: #FFF;
+        position: absolute;
+        right: 0;
+        left: 0;
+        margin: 0 auto 0 auto;
+        height: fit-content;
+        width: fit-content;
+        min-width: 300px;
+        padding: 20px;
+        border-radius: 16px;
+        transition: .3s;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-around;
+        top: calc(0% - 70px);
+        box-shadow: 3px 3px 20px 0px rgba(32, 32, 32, 0.7);
+        opacity: .5;
+
+        &:hover {
+            top: calc(0%);
+            opacity: 1;
+        }
+
+        button {
+            cursor: pointer;
+            margin: 0px 10px 0 10px;
+            width: 40px;
+            height: 40px;
+            font-size: 1.2rem;
+            border-radius: 50%;
+            padding: 0;
+            border: none;
+            outline: none;
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: center;
+            transition: .3s;
+
+            &.controlButtonStart {
+                background: rgb(0, 194, 0);
+
+                svg {
+                    color: #FFF;
+                }
+
+                &:hover {
+                    background: rgb(0, 128, 0);
+                }
+            }
+
+            &.controlButtonStop {
+                background: rgb(255, 0, 0);
+
+                svg {
+                    color: #FFF;
+                }
+
+                &:hover {
+                    background: rgb(150, 0, 0);
+                }
+            }
+
+            &.controlButtonRestart {
+                background: rgb(0, 169, 199);
+
+                svg {
+                    color: #FFF;
+                }
+
+                &:hover {
+                    background: rgb(0, 121, 143);
+                }
+            }
+
+            &.controlButtonLogout {
+                background: rgb(80, 80, 80);
+
+                svg {
+                    color: #FFF;
+                }
+
+                &:hover {
+                    background: rgb(40, 40, 40);
+                }
+            }
+
+            &.disabled {
+                cursor: not-allowed;
+                pointer-events: none;
+                opacity: .25;
+            }
+        }
+    }
+}
+
+.qrCode {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    width: 100%;
+    height: 100%;
+
+    h3 {
+        text-transform: uppercase;
+        margin-bottom: 30px;
+        font-size: 32px;
+        font-weight: bold;
+    }
+
+    svg {
+        width: 250px;
+        height: 250px;
+        margin-bottom: 30px;
+    }
+
+    p {
+        text-align: center;
+        width: 600px;
+    }
+}
+
+.chats {
+    background: #FFF;
+    width: 25%;
+    height: 100%;
+    overflow: auto;
+
+    .sessionSelector {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+
+        p {
+            width: 100%;
+            text-align: center;
+            cursor: pointer;
+            padding: 20px;
+            border-bottom: 3px solid transparent;
+            text-transform: uppercase;
+        }
+
+        .sessionSelectorActive {
+            border-bottom: 3px solid rgb(0, 0, 255);
+        }
+    }
+
+    .chatSearch {
+        width: 100%;
+        border-bottom: 1px solid #808080;
+        padding: 5px;
+
+        input {
+            border: none;
+            outline: none;
+            width: 100%;
+            padding: 20px;
+            font-size: 1.3rem;
+        }
+    }
+
+    .noChats {
+        margin-top: 35%;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        font-weight: bold;
+
+        h3 {
+            font-size: 2.2rem;
+        }
+
+        p {
+            font-size: 1.2rem;
+        }
+    }
+}
+
+.content {
+    background: rgb(220, 220, 220);
+    width: 75%;
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+
+.contentChat {
+    width: 90%;
+    height: 90%;
+    border-radius: 8px;
+    overflow: hidden;
+    -webkit-box-shadow: 3px 3px 20px 0px rgba(32, 32, 32, 0.7);
+    box-shadow: 3px 3px 20px 0px rgba(32, 32, 32, 0.7);
+}

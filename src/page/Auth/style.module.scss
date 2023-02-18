@@ -1,0 +1,73 @@
+.container {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: url('./../../assets/img/login-background.jpg') no-repeat center center;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -ms-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+
+.form {
+    background: rgb(100, 0, 0);
+    min-width: 350px;
+    width: 20%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 50px;
+    border-radius: 8px;
+    -webkit-box-shadow: 5px 5px 10px 1px #202020;
+    box-shadow: 5px 5px 10px 1px #202020;
+}
+
+.title {
+    color: #FFF;
+    width: 100%;
+    text-align: center;
+    font-size: 2rem;
+    margin-bottom: 35px;
+}
+
+.input {
+    border: none;
+    outline: none;
+    padding: 15px;
+    width: 100%;
+    margin: 10px;
+    box-sizing: border-box;
+    font-size: 1.2rem;
+    border-radius: 3px;
+}
+
+.submit {
+    cursor: pointer;
+    padding: 20px;
+    background: rgb(220, 80, 0);
+    color: #FFF;
+    text-transform: uppercase;
+    transition: background-color .2s;
+}
+
+.submit:hover {
+    background: rgb(175, 64, 0);
+}
+
+.keepConnected{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: left;
+    color: #FFF;
+    padding: 10px;
+    *{
+        margin-left: 5px;
+    }
+}
