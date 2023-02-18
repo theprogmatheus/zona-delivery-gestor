@@ -6,6 +6,7 @@ import RestaurantsSettingsHandler from "./handlers/RestaurantsSettingsHandler";
 class Settings {
 
     constructor(api) {
+        this.settings = DefaultSettings;
         this.api = api;
         this.handlers = [
             new RestaurantsSettingsHandler(this.api)
@@ -25,7 +26,6 @@ class Settings {
     }
 
     async handleSettings() {
-        this.settings = DefaultSettings;
         if (this.handlers) {
             for (let i = 0; i < this.handlers.length; i++) {
                 const handler = this.handlers[i];
