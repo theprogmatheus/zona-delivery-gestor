@@ -27,8 +27,6 @@ class RestaurantsSettingsHandler extends SettingsHandler {
                 )
             })
         }
-        console.log(values)
-
         values.restaurant.values.id.options = options;
 
         return values;

@@ -13,7 +13,6 @@ import { MenuContextProvider } from './MenuContext';
 
 import API from './../api/API';
 
-console.log('render context')
 const api = new API();
 const settings = new Settings(api);
 
