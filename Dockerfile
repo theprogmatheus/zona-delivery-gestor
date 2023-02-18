@@ -7,7 +7,7 @@ WORKDIR /opt/app
 
 COPY ./ /opt/app
 
-ENV ZONA_DELIVERY_API_HOST=https://api-v2.zonadelivery.net
+ENV REACT_ZONA_DELIVERY_API_HOST=https://api-v2.zonadelivery.net
 
 RUN npm install
 RUN npm run build
