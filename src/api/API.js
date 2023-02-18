@@ -86,6 +86,8 @@ class API {
 
                 const requestURL = `${this.url}${path}${extraPath}`;
 
+                console.log("APIURL: " + this.url)
+
 
                 const headers = {}
                 headers['Content-Type'] = 'application/json';

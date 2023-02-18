@@ -1,6 +1,6 @@
 // API HOST URL
 console.log("ENV:", process.env)
-const apiUrl = process.env.REACT_ZONA_DELIVERY_API_HOST || "http://localhost:8080"; //https://api-v2.zonadelivery.net
+const apiUrl = process.env.REACT_ZONA_DELIVERY_API_HOST; //https://api-v2.zonadelivery.net
 console.log('API HOST: ' + apiUrl)
 
 const endPoints = {
