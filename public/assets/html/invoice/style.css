@@ -1,0 +1,83 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono&display=swap');
+
+@page {
+    font-family: 'Roboto Mono', monospace;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    font-family: 'Roboto Mono', monospace;
+}
+
+#main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    overflow-wrap: anywhere;
+
+}
+
+::-webkit-scrollbar {
+    display: none;
+}
+
+
+#main section {
+    width: 100%;
+    padding: 15px 0 15px 0;
+    border-bottom: 1px dashed #000;
+}
+
+
+#main section.header {
+    text-align: center;
+    text-transform: uppercase;
+}
+
+#main section.items {
+    padding-bottom: 30px;
+}
+
+#main section.items .item {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 30px;
+}
+
+#main section.items .aditional {
+    margin: 0;
+    margin-top: 5px;
+}
+
+#main section.items .amount {
+    width: 10%;
+    text-align: left;
+}
+
+#main section.items .description {
+    width: 60%;
+    text-align: left;
+
+}
+
+#main section.items .price {
+
+    width: 30%;
+    text-align: right;
+}
+
+
+#main section.payments .row {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+
+}

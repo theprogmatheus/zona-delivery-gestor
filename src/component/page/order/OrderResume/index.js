@@ -44,9 +44,10 @@ const OrderResume = ({ order, active, onClick }) => {
     }
 
     return order && (
-        <div className={`${Style.container} ${active ? Style.active : order.status === 'PLACED' && Style.placed}`} onClick={onClick}>           
+        <div className={`${Style.container} ${active ? Style.active : order.status === 'PLACED' && Style.placed}`} onClick={onClick}>
             <h3 className={Style.title}>{order?.ifoodOrder?.merchant?.name || order?.restaurant?.displayName}</h3>
             <p className={Style.customer}>#{order.simpleId} - {order.customer.name}</p>
+            {order?.orderType === 'DELIVERY' && <p>Entrega prevista para {new Date(order.deliveryDateTime).toLocaleTimeString()}</p>}
             {isOrderScheduled(order) && <p>Agendado para: {formatDate(order?.ifoodOrder?.preparationStartDateTime)}</p>}
             {getStatusTag(order)}
             <ul className={Style.tags}>
