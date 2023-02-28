@@ -1,12 +1,9 @@
 import Style from './style.module.scss';
 import logo from './../../assets/img/logo.png';
 import { useState, useEffect } from 'react';
-import IFoodMerchantsGroup from '../../component/IFoodMerchantsGroup';
-import useAppContext from '../../hook/useAppContext';
 
 const HomePage = () => {
 
-    const { ifoodMerchants } = useAppContext();
 
     const getCurrentDateString = () => {
         const date = new Date();
@@ -46,9 +43,6 @@ const HomePage = () => {
                 </div>
 
                 <h3 className={Style.dateTime}>{dateString}</h3>
-                <div>
-                    <IFoodMerchantsGroup ifoodMerchants={ifoodMerchants} />
-                </div>
 
             </div>
             <div className={Style.content}>

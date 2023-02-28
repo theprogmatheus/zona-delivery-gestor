@@ -12,9 +12,11 @@ import { OrderContextProvider } from './OrderContext';
 import { MenuContextProvider } from './MenuContext';
 
 import API from './../api/API';
+import WebSocketAPI from "../api/ws/WebSocketAPI";
 
 const api = new API();
 const settings = new Settings(api);
+const webSocketAPI = new WebSocketAPI(api);
 
 export const AppContext = createContext();
 
@@ -36,8 +38,12 @@ export const AppContextProvider = ({ children }) => {
     useEffect(() => {
         // lista os merchants... pega o status de cada e adiciona no ifoodMechants... d
 
+        // conecta o websocket..
+        webSocketAPI.connect();
+
+
         const handleIfoodMerchants = async () => {
-            if (settings.values.restaurant.id){
+            if (settings.values.restaurant.id) {
                 const ifoodMerchants = await api.requests.listIFoodMerchants(settings.values.restaurant.id);
                 if (ifoodMerchants) {
                     for (let i = 0; i < ifoodMerchants.length; i++) {
@@ -53,6 +59,7 @@ export const AppContextProvider = ({ children }) => {
         const interval = setInterval(handleIfoodMerchants, 30000);
         return () => {
             clearInterval(interval);
+            webSocketAPI.disconnect();
         }
     }, [])
 
@@ -80,7 +87,7 @@ export const AppContextProvider = ({ children }) => {
 
     return (
         <AppContext.Provider
-            value={{ api, state, setState, authenticated, setAuthenticated, modal, settings, ifoodMerchants }}
+            value={{ api, webSocketAPI, state, setState, authenticated, setAuthenticated, modal, settings, ifoodMerchants }}
         >
             <WhatsappContextProvider>
                 <OrderContextProvider>

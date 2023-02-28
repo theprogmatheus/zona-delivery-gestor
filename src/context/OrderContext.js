@@ -1,4 +1,4 @@
-import { createContext, useState, useEffect, useCallback } from "react";
+import { createContext, useState, useEffect } from "react";
 import useWhatsappContext from '../hook/useWhatsappContext';
 import usePrinter from './../hook/usePrinter';
 import newOrderMP3 from './../assets/audio/new-order.mp3';
@@ -15,7 +15,7 @@ export const OrderContextProvider = ({ children }) => {
     const [orders, setOrders] = useState([]);
     const [selectedOrder, setSelectedOrder] = useState();
     const [newOrderAudio] = useState(new Audio(newOrderMP3));
-    const { api, modal, settings } = useAppContext();
+    const { api, webSocketAPI, modal, settings } = useAppContext();
     const { print } = usePrinter();
     const [confirmedOrders, setConfirmedOrders] = useState([]);
 
@@ -23,6 +23,18 @@ export const OrderContextProvider = ({ children }) => {
         if (settings?.values?.restaurant?.id) {
             api.requests.listOrders(settings.values.restaurant.id).then(setOrders)
 
+
+            const destination = `/topic/${settings.values.restaurant.id}/events`;
+            webSocketAPI.subscribe(destination, (frame) => {
+                if (frame?.body) {
+                    const event = JSON.parse(frame.body);
+                    if (event)
+                        handleEvent(event);
+
+                }
+            })
+ 
+            /*
             const eventPolling = async (restaurantId) =>
                 api.requests.eventPolling(restaurantId).then((events) => handleEvents(restaurantId, events));
 
@@ -30,6 +42,7 @@ export const OrderContextProvider = ({ children }) => {
             return () => {
                 clearInterval(eventPollingInterval);
             };
+            */
         }
     }, [settings])
 
@@ -72,72 +85,63 @@ export const OrderContextProvider = ({ children }) => {
             index) => arr.indexOf(item) === index);
     }
 
-    const handleEvents = (restaurantId, events) => {
-        if (!events) return;
+    function handleEvent(event) {
+        const data = event.data;
 
-        events.forEach(event => {
-
-            const data = event.data;
-
-            switch (event.type) {
+        switch (event.type) {
 
 
-                case 'ORDER_UPDATE':
+            case 'ORDER_UPDATE':
 
-                    const orderId = data.id;
-
-
-                    setOrders((orders) => {
+                const orderId = data.id;
 
 
-                        if (orders && orders.map((order) => order.id).includes(orderId)) {
+                setOrders((orders) => {
+
+
+                    if (orders && orders.map((order) => order.id).includes(orderId)) {
 
 
 
-                            // atualiza o pedido
-                            const index = orders.map((order) => order.id).indexOf(orderId);
-                            if (index !== -1)
-                                orders[index] = data;
-                        } else {
-                            // adiciona o pedido                
-                            if (orders)
-                                orders = [data, ...orders];
-                            else orders = [data]
-                        }
-
-                        return [...removeDuplicates(orders)];
-                    });
-
-                    switch (data.status) {
-                        case "CANCELLED":
-
-                            modal.showWindow(<h3>Pedido cancelado!</h3>, <AlertSound><h3>O pedido #{data?.simpleId} foi cancelado!</h3></AlertSound>)
-                            NotificationManager.error(`O pedido #${data?.simpleId} do IFood foi cancelado!`, 'Pedido do IFood cancelado!', 300000);
-
-
-                            break;
-                        default:
-                            break;
+                        // atualiza o pedido
+                        const index = orders.map((order) => order.id).indexOf(orderId);
+                        if (index !== -1)
+                            orders[index] = data;
+                    } else {
+                        // adiciona o pedido                
+                        if (orders)
+                            orders = [data, ...orders];
+                        else orders = [data]
                     }
-                    break;
 
-                case 'IFOOD_CONSUMER_CANCELLATION_REQUESTED':
-                    modal.showConfirm(<h3>Solicitação de Cancelamento</h3>, <CancellationRequestModal order={data} />, async (confirmed) => {
-                        if (confirmed) {
-                            await api.requests.ifoodAcceptCancellation(data.restaurant.id, data.id);
-                            NotificationManager.success('Você aceitou o pedido de cancelamento do pedido #' + data.simpleId, 'Pedido de cancelamento aceito!')
-                        } else {
-                            await api.requests.ifoodDenyCancellation(data.restaurant.id, data.id);
-                            NotificationManager.error('Você negou o pedido de cancelamento do pedido #' + data.simpleId, 'Pedido de cancelamento negado!')
-                        }
-                    })
-                    break;
-            }
-        });
+                    return [...removeDuplicates(orders)];
+                });
+
+                switch (data.status) {
+                    case "CANCELLED":
+
+                        modal.showWindow(<h3>Pedido cancelado!</h3>, <AlertSound><h3>O pedido #{data?.simpleId} foi cancelado!</h3></AlertSound>)
+                        NotificationManager.error(`O pedido #${data?.simpleId} do IFood foi cancelado!`, 'Pedido do IFood cancelado!', 300000);
 
 
-        if (events && events.length > 0)
-            api.requests.eventAcknowledgment(restaurantId, events);
+                        break;
+                    default:
+                        break;
+                }
+                break;
+
+            case 'IFOOD_CONSUMER_CANCELLATION_REQUESTED':
+                modal.showConfirm(<h3>Solicitação de Cancelamento</h3>, <CancellationRequestModal order={data} />, async (confirmed) => {
+                    if (confirmed) {
+                        await api.requests.ifoodAcceptCancellation(data.restaurant.id, data.id);
+                        NotificationManager.success('Você aceitou o pedido de cancelamento do pedido #' + data.simpleId, 'Pedido de cancelamento aceito!')
+                    } else {
+                        await api.requests.ifoodDenyCancellation(data.restaurant.id, data.id);
+                        NotificationManager.error('Você negou o pedido de cancelamento do pedido #' + data.simpleId, 'Pedido de cancelamento negado!')
+                    }
+                })
+                break;
+        }
     }
 
     const confirmOrder = async (order) => {

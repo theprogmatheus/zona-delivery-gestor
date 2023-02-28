@@ -1,8 +1,10 @@
-import React from 'react'
+import Style from './style.module.scss';
 
 const DeliveryPage = () => {
+
   return (
-    <div>DeliveryPage</div>
+    <div className={Style.container}>
+    </div>
   )
 }
 

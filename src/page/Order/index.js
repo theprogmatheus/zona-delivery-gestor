@@ -5,13 +5,16 @@ import { useState } from 'react';
 import OrderResume from '../../component/page/order/OrderResume';
 import OrderDetails from '../../component/page/order/OrderDetails';
 import useOrderContext from './../../hook/useOrderContext';
+import useAppContext from '../../hook/useAppContext';
+
+import IFoodMerchantsGroup from './../../component/IFoodMerchantsGroup';
 
 import { RiNewspaperLine } from 'react-icons/ri';
 
 const OrderPage = () => {
 
     const { orders, selectedOrder, setSelectedOrder, isOrderScheduled } = useOrderContext();
-
+    const { ifoodMerchants } = useAppContext();
     const [orderTiming, setOrderTiming] = useState();
     const [orderFilter, setOrderFilter] = useState('');
     const [search, setSearch] = useState('');
@@ -150,48 +153,53 @@ const OrderPage = () => {
 
     return (
         <div className={Style.container}>
-            <div className={Style.sidebar}>
-                <div className={Style.panel}>
-                    <div className={Style.scheduleAndNow}>
-                        <button className={orderTiming !== 'SCHEDULED' ? Style.active : ''} onClick={() => setOrderTiming(null)}>
-                            Agora
-                            {orders?.find((order) => order.status === 'PLACED' && !isOrderScheduled(order)) &&
-                                <span className={Style.amountSpan}>
-                                    {orders.filter((order) => order.status === 'PLACED' && !isOrderScheduled(order)).length}
-                                </span>
-                            }
-                        </button>
-                        <button className={orderTiming === 'SCHEDULED' ? Style.active : ''} onClick={() => setOrderTiming('SCHEDULED')}>
-                            Agendados
-                            {orders?.find((order) => isOrderScheduled(order)) &&
-                                <span className={Style.amountSpan}>
-                                    {orders.filter((order) => isOrderScheduled(order)).length}
-                                </span>
-                            }
-                        </button>
-                    </div>
-                    <div className={Style.searchAndFilters}>
-                        <input type='search' onChange={(e) => setSearch(e.target.value)} placeholder='Buscar pedido' value={search} />
-                        <select onChange={(e) => setOrderFilter(e.target.value)}>
-                            <option value=''>Todos os Pedidos</option>
-                            <option value='order.new'>Pendente</option>
-                            <option value='order.status.confirmed'>Em preparo</option>
-                            <option value='order.status.done'>Pronto</option>
-                            <option value='order.status.dispached'>Despachado</option>
-                            <option value='order.status.cancelled'>Cancelado</option>
-                            <option value='order.status.concluded'>Concluido</option>
-                            <option value='order.type.takeout'>Pedidos para retirada</option>
-                            <option value='order.type.delivery'>Pedidos para entregar</option>
-                            <option value='order.channel.whatsapp'>Pedidos feito no WhatsApp</option>
-                            <option value='order.channel.ifood'>Pedidos feito no IFood</option>
-                            <option value='order.channel.ifood.digital_catalog'>Pedidos feito no IFood - Cardápio Digital</option>
-                        </select>
-                    </div>
-                </div>
-                {renderSidebar()}
+            <div className={Style.merchantStatus}>
+                <IFoodMerchantsGroup ifoodMerchants={ifoodMerchants} />
             </div>
-            <div className={Style.order}>
-                <OrderDetails order={orders?.filter((order) => order.id === selectedOrder)[0]} />
+            <div className={Style.orderContent}>
+                <div className={Style.sidebar}>
+                    <div className={Style.panel}>
+                        <div className={Style.scheduleAndNow}>
+                            <button className={orderTiming !== 'SCHEDULED' ? Style.active : ''} onClick={() => setOrderTiming(null)}>
+                                Agora
+                                {orders?.find((order) => order.status === 'PLACED' && !isOrderScheduled(order)) &&
+                                    <span className={Style.amountSpan}>
+                                        {orders.filter((order) => order.status === 'PLACED' && !isOrderScheduled(order)).length}
+                                    </span>
+                                }
+                            </button>
+                            <button className={orderTiming === 'SCHEDULED' ? Style.active : ''} onClick={() => setOrderTiming('SCHEDULED')}>
+                                Agendados
+                                {orders?.find((order) => isOrderScheduled(order)) &&
+                                    <span className={Style.amountSpan}>
+                                        {orders.filter((order) => isOrderScheduled(order)).length}
+                                    </span>
+                                }
+                            </button>
+                        </div>
+                        <div className={Style.searchAndFilters}>
+                            <input type='search' onChange={(e) => setSearch(e.target.value)} placeholder='Buscar pedido' value={search} />
+                            <select onChange={(e) => setOrderFilter(e.target.value)}>
+                                <option value=''>Todos os Pedidos</option>
+                                <option value='order.new'>Pendente</option>
+                                <option value='order.status.confirmed'>Em preparo</option>
+                                <option value='order.status.done'>Pronto</option>
+                                <option value='order.status.dispached'>Despachado</option>
+                                <option value='order.status.cancelled'>Cancelado</option>
+                                <option value='order.status.concluded'>Concluido</option>
+                                <option value='order.type.takeout'>Pedidos para retirada</option>
+                                <option value='order.type.delivery'>Pedidos para entregar</option>
+                                <option value='order.channel.whatsapp'>Pedidos feito no WhatsApp</option>
+                                <option value='order.channel.ifood'>Pedidos feito no IFood</option>
+                                <option value='order.channel.ifood.digital_catalog'>Pedidos feito no IFood - Cardápio Digital</option>
+                            </select>
+                        </div>
+                    </div>
+                    {renderSidebar()}
+                </div>
+                <div className={Style.order}>
+                    <OrderDetails order={orders?.filter((order) => order.id === selectedOrder)[0]} />
+                </div>
             </div>
         </div>
     )

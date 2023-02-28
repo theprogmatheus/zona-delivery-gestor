@@ -3,11 +3,12 @@ import Style from './style.module.scss';
 import SidebarButton from './Button';
 
 // icons
-import { AiOutlineHome } from 'react-icons/ai';
+import { AiOutlineHome, AiOutlineUser } from 'react-icons/ai';
 import { FiSettings, FiUsers } from 'react-icons/fi';
 import { BsWhatsapp } from 'react-icons/bs';
 import { RiNewspaperLine } from 'react-icons/ri';
 import { MdRestaurantMenu, MdOutlineSportsMotorsports } from 'react-icons/md';
+import { GoGraph } from 'react-icons/go';
 
 const Sidebar = () => {
 
@@ -32,16 +33,23 @@ const Sidebar = () => {
             <SidebarButton link='/menu'>
                 <MdRestaurantMenu />
             </SidebarButton>
-
-            <SidebarButton link='/delivery'>
-                <MdOutlineSportsMotorsports />
-            </SidebarButton>
-
-
+            
             <SidebarButton link='/employees'>
                 <FiUsers />
             </SidebarButton>
 */}
+            <SidebarButton link='/delivery'>
+                <MdOutlineSportsMotorsports />
+            </SidebarButton>
+
+            <SidebarButton link='/analytics'>
+                <GoGraph />
+            </SidebarButton>
+
+            <SidebarButton link='/account'>
+                <AiOutlineUser />
+            </SidebarButton>
+
             <SidebarButton link='/settings'>
                 <FiSettings />
             </SidebarButton>
