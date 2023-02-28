@@ -13,6 +13,7 @@ import { MenuContextProvider } from './MenuContext';
 
 import API from './../api/API';
 import WebSocketAPI from "../api/ws/WebSocketAPI";
+import { NotificationManager } from "react-notifications";
 
 const api = new API();
 const settings = new Settings(api);
@@ -21,6 +22,8 @@ const webSocketAPI = new WebSocketAPI(api);
 export const AppContext = createContext();
 
 export const AppContextProvider = ({ children }) => {
+
+
 
     const [state, setState] = useStorage("app.context");
 
@@ -35,11 +38,21 @@ export const AppContextProvider = ({ children }) => {
     // const IFoodWidget = useIFoodWidget();
 
 
+
     useEffect(() => {
         // lista os merchants... pega o status de cada e adiciona no ifoodMechants... d
 
         // conecta o websocket..
         webSocketAPI.connect();
+
+        webSocketAPI.onConnect = () => {
+            NotificationManager.success('Você foi conectado ao servidor com sucesso.', 'Conectado ao servidor.')
+        }
+
+        webSocketAPI.onDisconnect = () => {
+            NotificationManager.error('Não foi possível estabelecer uma conexão com o servidor, o app pode não funcionar corretamente.', 'Sem conexão com o servidor.')
+        }
+
 
 
         const handleIfoodMerchants = async () => {
