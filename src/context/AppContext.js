@@ -44,11 +44,7 @@ export const AppContextProvider = ({ children }) => {
 
         // conecta o websocket..
         webSocketAPI.connect();
-
-        webSocketAPI.onConnect = () => {
-            NotificationManager.success('Você foi conectado ao servidor com sucesso.', 'Conectado ao servidor.')
-        }
-
+        
         webSocketAPI.onDisconnect = () => {
             NotificationManager.error('Não foi possível estabelecer uma conexão com o servidor, o app pode não funcionar corretamente.', 'Sem conexão com o servidor.')
         }

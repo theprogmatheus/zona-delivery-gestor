@@ -30,7 +30,6 @@ export const OrderContextProvider = ({ children }) => {
                     const event = JSON.parse(frame.body);
                     if (event)
                         handleEvent(event);
-
                 }
             })
  
